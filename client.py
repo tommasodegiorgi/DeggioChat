@@ -40,6 +40,20 @@ class ChatClient:
             print("\n❌ Connessione con il server interrotta.")
             self.running = False
 
+    def print_motd(self, online_count):
+        """Visualizza il messaggio del giorno (MOTD) all'autenticazione."""
+        print("\n" + "="*52)
+        print(r"  _____                      _        _____ _           _   ")
+        print(r" |  __ \                    (_)      / ____| |         | |  ")
+        print(r" | |  | | ___  __ _  __ _ _  ___    | |    | |__   __ _| |_ ")
+        print(r" | |  | |/ _ \/ _` |/ _` | |/ _ \   | |    | '_ \ / _` | __|")
+        print(r" | |__| |  __/ (_| | (_| | | (_) |  | |____| | | | (_| | |_ ")
+        print(r" |_____/ \___|\__, |\__, |_|\___/    \_____|_| |_|\__,_|\__|")
+        print(r"               __/ | __/ |                                  ")
+        print(r"              |___/ |___/                                   ")
+        print("\n" + " "*12 + f"🎮 Giocatori online: {online_count} 🎮")
+        print("="*52 + "\n")
+
     def receive_messages(self):
         buffer = ""
         while self.running:
@@ -83,6 +97,11 @@ class ChatClient:
                                 self.username = response.get("username")
                             
                             print(f"\n{response.get('message')}")
+                            
+                            # Se il server richiede il MOTD, lo disegna a schermo
+                            if response.get("show_motd"):
+                                self.print_motd(response.get("online_count", 1))
+                                
                             self.print_prompt()
                         elif status == "enter_chat":
                             self.focus_chat = response.get("target")
