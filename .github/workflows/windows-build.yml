@@ -1,0 +1,35 @@
+name: Build DeggioChat Windows EXE
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Controlla il codice sorgente
+      uses: actions/checkout@v4
+
+    - name: Configura Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Installa PyInstaller
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+
+    - name: Genera il file EXE con PyInstaller
+      run: |
+        pyinstaller --onefile client.py
+        Rename-Item -Path "dist/client.exe" -NewName "DeggioChat.exe"
+
+    - name: Carica l'eseguibile nella Release di GitHub
+      uses: softprops/action-gh-release@v2
+      with:
+        files: dist/DeggioChat.exe
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
