@@ -1,36 +1,35 @@
-# DeggioChat — CLI Minecraft-Style Application
+# DeggioChat — CLI Minecraft-Style Multilingual Chat Application
 
-Una chat client-server minimale basata su terminale, con sintassi dei comandi ispirata a Minecraft ed esperienza utente ottimizzata per la console.
+A minimal client-server chat application based entirely on the terminal, featuring a command syntax inspired by Minecraft and a text user experience optimized for the console. It natively supports SQLite persistence, secure authentication, real-time i18n localization, and automated GitHub Action executable builds.
 
-## 🚀 Funzionalità Principali
+---
 
-*   **Comandi Stile Minecraft:** Autenticazione, gestione relazioni e messaggistica tramite comandi come `/register`, `/login`, `/chatrequest` e `/chat`.
-*   **Sessione Persistente (Auto-Login):** Il client genera e memorizza un token di sessione univoco in un file locale (`.session_token`). Al riavvio, l'accesso avviene istantaneamente in background.
-*   **Modalità Chat Focus:** Digitando `/chat <username>`, la console entra in una modalità di conversazione diretta. Non serve digitare comandi prima di ogni messaggio: l'input standard invia direttamente il testo all'utente selezionato. Digitando `/exit` si torna alla gestione globale.
-*   **Gestione degli Stati Real-time:** Il server traccia gli utenti online, le richieste pendenti (`accept`/`deny`) e le relazioni approvate.
-*   **Architettura Multi-Thread:** Ascolto asincrono dei messaggi in background per evitare il blocco del terminale durante l'input dell'utente.
+## 🚀 Key Features
 
-## 🛠️ Requisiti ed Installazione
+*   **Multilingual System (i18n):** English by default. Switch dynamically at runtime between English, Italian, Spanish, Portuguese, Japanese, French, and Slovenian using the `/lang` command.
+*   **Minecraft-Style Commands:** Core workflow handled via `/register`, `/login`, `/chatrequest`, and `/chat`.
+*   **Persistent SQLite DB:** Users data, hashed passwords, relationships, and active sessions are fully preserved on server restart.
+*   **Persistent Session (Auto-Login):** Unique background tokens allow automated logins upon app restart.
+*   **Focus Chat Mode:** Typing `/chat <username>` switches input to direct communication mode. Type `/exit` to go back.
+*   **Secure Authentication:** Passwords are fully hashed using SHA-256 algorithms combined with unique runtime user salts.
 
-L'applicazione utilizza esclusivamente moduli nativi della Standard Library di Python 3. Non è richiesta l'installazione di pacchetti di terze parti.
+---
 
-1. Crea i file sul tuo computer o sul tuo repository GitHub.
-2. Assicurati di non caricare le sessioni locali aggiungendo `.session_token` al tuo file `.gitignore`.
+## 📖 Command Manual
 
-## 📖 Manuale dei Comandi
+### 🔑 Authentication
+*   `/register <email> <username> <password>` - Create a brand new account and trigger an automatic login.
+*   `/login <username> <password>` - Access an existing account (generates the local token).
 
-### Autenticazione
-*   `/register <email> <username> <password>` - Crea un nuovo account ed effettua il login automatico.
-*   `/login <username> <password>` - Accedi al tuo account esistente (genera il token locale).
+### 📩 Relationships & Requests
+*   `/chatrequest <username>` - Send a chat request permission to a specific user.
+*   `/chatrequest accept <username>` - Accept an incoming chat request.
+*   `/chatrequest deny <username>` - Refuse an incoming chat request.
 
-### Relazioni e Richieste
-*   `/chatrequest <username>` - Invia una richiesta di chat a un utente.
-*   `/chatrequest accept <username>` - Accetta una richiesta di chat in arrivo.
-*   `/chatrequest deny <username>` - Rifiuta una richiesta di chat in arrivo.
-
-### Messaggistica e Navigazione
-*   `/chat list` - Mostra la lista di tutti gli utenti con cui hai una chat abilitata.
-*   `/chat <username>` - Entra in modalità conversazione diretta con l'utente.
-*   `/chat <username> delete` - Revoca i permessi di chat con l'utente e chiude la conversazione.
-*   `/exit` - Se sei all'interno di una chat focalizzata, esce e torna alla CLI globale.
-*   `/quit` - Disconnette il client e chiude l'applicazione.
+### 💬 Messaging & Navigation
+*   `/chat list` - List all users you are currently allowed to chat with.
+*   `/chat <username>` - Enter focus chat mode with that user.
+*   `/chat <username> delete` - Revoke chat permissions with that user and close the link.
+*   🌐 `/lang <en/it/es/pt/ja/fr/sl>` - Switch software language instantly (Default: English).
+*   `/exit` - Leave focused chat room and return to global CLI prompt.
+*   `/quit` - Disconnects the client and safely closes the application.
