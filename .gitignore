@@ -1,0 +1,15 @@
+# Cache di runtime di Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# File di sessione locale di DeggioChat (Auto-Login)
+.session_token
+
+# Database SQLite locale (Persistenza dei dati del server)
+deggiochat.db
+
+# Cartelle temporanee generate da PyInstaller quando crei l'EXE
+build/
+dist/
+*.spec
