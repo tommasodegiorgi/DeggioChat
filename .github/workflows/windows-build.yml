@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    
+    # AGGIUNGI QUESTE TRE RIGHE QUI SOTTO PER RISOLVERE L'ERRORE:
+    permissions:
+      contents: write
 
     steps:
     - name: Controlla il codice sorgente
