@@ -9,6 +9,7 @@ LANG_FILE = ".lang_config"
 HOST = "127.0.0.1"
 PORT = 55555
 
+# Comprehensive i18n Dictionary supporting 11 languages (Default: English)
 LANGUAGES = {
     "en": {
         "welcome_title": "   🎮   WELCOME TO DEGGIOCHAT (CLI STYLE)    🎮      ",
@@ -25,14 +26,14 @@ LANGUAGES = {
         "usage_login": "❌ Usage: /login <username> <password>",
         "usage_request": "❌ Usage: /chatrequest <username> OR /chatrequest <accept/deny> <username>",
         "usage_chat": "❌ Usage: /chat <username>, /chat list, OR /chat <username> delete",
-        "usage_lang": "❌ Usage: /lang <en/it/es/pt/ja/fr/sl>",
+        "usage_lang": "❌ Usage: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
         "unknown_cmd": "❌ Unknown command. Use /register, /login, /chatrequest, /chat, /lang, /exit or /quit.",
         "conn_ended": "\nConnection terminated.",
         "lang_changed": "🌐 Language changed to English!"
     },
     "it": {
         "welcome_title": "   🎮   BENVENUTO SU DEGGIOCHAT (CLI STYLE)  🎮      ",
-        "welcome_subtitle": "Usa /register or /login per iniziare. I comandi iniziano con '/'",
+        "welcome_subtitle": "Usa /register o /login per iniziare. I comandi iniziano con '/'",
         "welcome_examples": "Esempi: /chatrequest Alpha, /chat Alpha, /lang en, /exit, /quit\n",
         "err_conn": "❌ Impossibile connettersi al server",
         "err_server_lost": "\n❌ Connessione con il server interrotta.",
@@ -45,13 +46,13 @@ LANGUAGES = {
         "usage_login": "❌ Uso: /login <username> <password>",
         "usage_request": "❌ Uso: /chatrequest <username> oppure /chatrequest <accept/deny> <username>",
         "usage_chat": "❌ Uso: /chat <username>, /chat list, o /chat <username> delete",
-        "usage_lang": "❌ Uso: /lang <en/it/es/pt/ja/fr/sl>",
+        "usage_lang": "❌ Uso: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
         "unknown_cmd": "❌ Comando sconosciuto. Usa /register, /login, /chatrequest, /chat, /lang, /exit o /quit.",
         "conn_ended": "\nConnessione terminata.",
         "lang_changed": "🌐 Lingua cambiata in Italiano!"
     },
     "es": {
-        "welcome_title": "   🎮   BIENVENIDO A DEGGIOCHAT (ESTILOS CLI) 🎮      ",
+        "welcome_title": "   🎮   BIENVENIDO A DEGGIOCHAT (ESTILO CLI) 🎮      ",
         "welcome_subtitle": "Usa /register o /login para comenzar. Los comandos empiezan con '/'",
         "welcome_examples": "Ejemplos: /chatrequest Alpha, /chat Alpha, /lang en, /exit, /quit\n",
         "err_conn": "❌ No se pudo conectar al servidor",
@@ -65,7 +66,7 @@ LANGUAGES = {
         "usage_login": "❌ Uso: /login <username> <password>",
         "usage_request": "❌ Uso: /chatrequest <username> O /chatrequest <accept/deny> <username>",
         "usage_chat": "❌ Uso: /chat <username>, /chat list, O /chat <username> delete",
-        "usage_lang": "❌ Uso: /lang <en/it/es/pt/ja/fr/sl>",
+        "usage_lang": "❌ Uso: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
         "unknown_cmd": "❌ Comando desconocido. Usa /register, /login, /chatrequest, /chat, /lang, /exit o /quit.",
         "conn_ended": "\nConexión terminada.",
         "lang_changed": "🌐 ¡Idioma cambiado a Español!"
@@ -85,7 +86,7 @@ LANGUAGES = {
         "usage_login": "❌ Uso: /login <username> <password>",
         "usage_request": "❌ Uso: /chatrequest <username> OU /chatrequest <accept/deny> <username>",
         "usage_chat": "❌ Uso: /chat <username>, /chat list, OU /chat <username> delete",
-        "usage_lang": "❌ Uso: /lang <en/it/es/pt/ja/fr/sl>",
+        "usage_lang": "❌ Uso: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
         "unknown_cmd": "❌ Comando desconhecido. Use /register, /login, /chatrequest, /chat, /lang, /exit ou /quit.",
         "conn_ended": "\nConexão terminada.",
         "lang_changed": "🌐 Idioma alterado para Português!"
@@ -105,7 +106,7 @@ LANGUAGES = {
         "usage_login": "❌ 使用法: /login <ユーザー名> <パスワード>",
         "usage_request": "❌ 使用法: /chatrequest <ユーザー名> または /chatrequest <accept/deny> <ユーザー名>",
         "usage_chat": "❌ 使用法: /chat <ユーザー名>, /chat list, または /chat <ユーザー名> delete",
-        "usage_lang": "❌ 使用法: /lang <en/it/es/pt/ja/fr/sl>",
+        "usage_lang": "❌ 使用法: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
         "unknown_cmd": "❌ 不明なコマンドです。/register, /login, /chatrequest, /chat, /lang, /exit, /quit を使用してください。",
         "conn_ended": "\n接続が終了しました。",
         "lang_changed": "🌐 言語が日本語に変更されました！"
@@ -125,7 +126,7 @@ LANGUAGES = {
         "usage_login": "❌ Usage: /login <username> <password>",
         "usage_request": "❌ Usage: /chatrequest <username> OU /chatrequest <accept/deny> <username>",
         "usage_chat": "❌ Usage: /chat <username>, /chat list, OU /chat <username> delete",
-        "usage_lang": "❌ Usage: /lang <en/it/es/pt/ja/fr/sl>",
+        "usage_lang": "❌ Usage: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
         "unknown_cmd": "❌ Commande inconnue. Utilisez /register, /login, /chatrequest, /chat, /lang, /exit ou /quit.",
         "conn_ended": "\nConnexion terminée.",
         "lang_changed": "🌐 Langue changée en Français !"
@@ -145,37 +146,111 @@ LANGUAGES = {
         "usage_login": "❌ Uporaba: /login <uporabniško_ime> <geslo>",
         "usage_request": "❌ Uporaba: /chatrequest <uporabniško_ime> ALI /chatrequest <accept/deny> <uporabniško_ime>",
         "usage_chat": "❌ Uporaba: /chat <uporabniško_ime>, /chat list, ALI /chat <uporabniško_ime> delete",
-        "usage_lang": "❌ Uporaba: /lang <en/it/es/pt/ja/fr/sl>",
+        "usage_lang": "❌ Uporaba: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
         "unknown_cmd": "❌ Neznan ukaz. Uporabite /register, /login, /chatrequest, /chat, /lang, /exit ali /quit.",
         "conn_ended": "\nPovezava prekinjena.",
         "lang_changed": "🌐 Jezik spremenjen v Slovenščino!"
-    }
+    },
+    "de": {
+        "welcome_title": "   🎮   WILLKOMMEN BEI DEGGIOCHAT (CLI-STIL)  🎮      ",
+        "welcome_subtitle": "Nutze /register oder /login zum Starten. Befehle beginnen mit '/'",
+        "welcome_examples": "Beispiele: /chatrequest Alpha, /chat Alpha, /lang en, /exit, /quit\n",
+        "err_conn": "❌ Verbindung zum Server fehlgeschlagen",
+        "err_server_lost": "\n❌ Verbindung zum Server verloren.",
+        "err_server_closed": "\n❌ Der Server hat die Verbindung geschlossen.",
+        "whisper": "💬 [Flüstern]",
+        "motd_online": "Online-Spieler",
+        "exit_chat": "Fokus-Chat verlassen mit",
+"not_in_chat": "Du befindest dich in keinem Fokus-Chat.",
+"usage_register": "❌ Verwendung: /register   ",
+"usage_login": "❌ Verwendung: /login  ",
+"usage_request": "❌ Verwendung: /chatrequest  ODER /chatrequest <accept/deny> ",
+"usage_chat": "❌ Verwendung: /chat , /chat list, ODER /chat  delete",
+"usage_lang": "❌ Verwendung: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
+"unknown_cmd": "❌ Unbekannter Befehl. Nutze /register, /login, /chatrequest, /chat, /lang, /exit oder /quit.",
+"conn_ended": "\nVerbindung beendet.",
+"lang_changed": "🌐 Sprache auf Deutsch geändert!"
+},
+"hr": {
+"welcome_title": "   🎮   DOBRODOŠLI NA DEGGIOCHAT (CLI STIL)  🎮      ",
+"welcome_subtitle": "Koristite /register ili /login za početak. Naredbe počinju s '/'",
+"welcome_examples": "Primjeri: /chatrequest Alpha, /chat Alpha, /lang en, /exit, /quit\n",
+"err_conn": "❌ Nije se moguće povezati na poslužitelj",
+"err_server_lost": "\n❌ Veza s poslužiteljem je prekinuta.",
+"err_server_closed": "\n❌ Poslužitelj je zatvorio vezu.",
+"whisper": "💬 [Šapat]",
+"motd_online": "Mrežni igrači",
+"exit_chat": "Napustili ste fokusirani chat s",
+"not_in_chat": "Niste ni u jednom fokusiranom chatu.",
+"usage_register": "❌ Upotreba: /register  <korisničko_ime> ",
+"usage_login": "❌ Upotreba: /login <korisničko_ime> ",
+"usage_request": "❌ Upotreba: /chatrequest <korisničko_ime> ILI /chatrequest <accept/deny> <korisničko_ime>",
+"usage_chat": "❌ Upotreba: /chat <korisničko_ime>, /chat list, ILI /chat <korisničko_ime> delete",
+"usage_lang": "❌ Upotreba: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
+"unknown_cmd": "❌ Nepoznata naredba. Koristite /register, /login, /chatrequest, /chat, /lang, /exit ili /quit.",
+"conn_ended": "\nVeza prekinuta.",
+"lang_changed": "🌐 Jezik promijenjen na Hrvatski!"
+},
+"sv": {
+"welcome_title": "   🎮   VÄLKOMMEN TILL DEGGIOCHAT (CLI-STIL)  🎮      ",
+"welcome_subtitle": "Använd /register eller /login för att starta. Kommandot börjar med '/'",
+"welcome_examples": "Exempel: /chatrequest Alpha, /chat Alpha, /lang en, /exit, /quit\n",
+"err_conn": "❌ Kunde inte ansluta till servern",
+"err_server_lost": "\n❌ Anslutningen till servern bröts.",
+"err_server_closed": "\n❌ Servern stängde anslutningen.",
+"whisper": "💬 [Viskning]",
+"motd_online": "Online-spelare",
+"exit_chat": "Lämnade fokus-chatten med",
+"not_in_chat": "Du är inte i någon fokus-chatt.",
+"usage_register": "❌ Användning: /register  <användarnamn> <lösenord>",
+"usage_login": "❌ Användning: /login <användarnamn> <lösenord>",
+"usage_request": "❌ Användning: /chatrequest <användarnamn> ELLER /chatrequest <accept/deny> <användarnamn>",
+"usage_chat": "❌ Användning: /chat <användarnamn>, /chat list, ELLER /chat <användarnamn> delete",
+"usage_lang": "❌ Användning: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
+"unknown_cmd": "❌ Okänt kommando. Använd /register, /login, /chatrequest, /chat, /lang, /exit eller /quit.",
+"conn_ended": "\nAnslutningen avslutad.",
+"lang_changed": "🌐 Språk ändrat till Svenska!"
+},
+"zh": {
+"welcome_title": "   🎮   欢迎来到 DEGGIOCHAT (CLI 样式)      🎮      ",
+"welcome_subtitle": "使用 /register 或 /login 开始。命令以 '/' 开头",
+"welcome_examples": "示例: /chatrequest Alpha, /chat Alpha, /lang en, /exit, /quit\n",
+"err_conn": "❌ 无法连接到服务器",
+"err_server_lost": "\n❌ 与服务器的连接已断开。",
+"err_server_closed": "\n❌ 服务器已关闭连接。",
+"whisper": "💬 [私聊]",
+"motd_online": "在线玩家",
+"exit_chat": "已退出与该用户的专注聊天: ",
+"not_in_chat": "您当前不在任何专注聊天中。",
+"usage_register": "❌ 用法: /register <电子邮件> <用户名> <密码>",
+"usage_login": "❌ 用法: /login <用户名> <密码>",
+"usage_request": "❌ 用法: /chatrequest <用户名> 或 /chatrequest <accept/deny> <用户名>",
+"usage_chat": "❌ 用法: /chat <用户名>, /chat list, 或 /chat <用户名> delete",
+"usage_lang": "❌ 用法: /lang <en/it/es/pt/ja/fr/sl/de/hr/sv/zh>",
+"unknown_cmd": "❌ 未知命令。使用 /register、/login、/chatrequest、/chat、/lang、/exit 或 /quit。",
+"conn_ended": "\n连接已结束。",
+"lang_changed": "🌐 语言已更改为中文！"
 }
-
+}
 class ChatClient:
-    def __init__(self):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.username = None
-        self.focus_chat = None  
-        self.running = True
-        self.lang = self.load_lang_preference()
-
-    def load_lang_preference(self):
-        """Loads local language setting. Defaults to English ('en')."""
-        if os.path.exists(LANG_FILE):
-            with open(LANG_FILE, "r") as f:
-                lang = f.read().strip().lower()
-                if lang in LANGUAGES:
-                    return lang
-        return "en"
-
-    def save_lang_preference(self, lang):
-        self.lang = lang
-        with open(LANG_FILE, "w") as f:
-            f.write(lang)
-
-    def t(self, key):
-        """Localization translator helper."""
+def init(self):
+self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+self.username = None
+self.focus_chat = None
+self.running = True
+self.lang = self.load_lang_preference()
+def load_lang_preference(self):
+if os.path.exists(LANG_FILE):
+with open(LANG_FILE, "r") as f:
+lang = f.read().strip().lower()
+if lang in LANGUAGES:
+return lang
+return "en"
+def save_lang_preference(self, lang):
+self.lang = lang
+with open(LANG_FILE, "w") as f:
+f.write(lang)
+def t(self, key):
 return LANGUAGES[self.lang].get(key, key)
 def connect(self):
 try:
