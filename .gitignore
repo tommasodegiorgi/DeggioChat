@@ -3,8 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# File di sessione locale di DeggioChat (Auto-Login)
+# File di configurazione locale di DeggioChat
 .session_token
+.lang_config
 
 # Database SQLite locale (Persistenza dei dati del server)
 deggiochat.db
