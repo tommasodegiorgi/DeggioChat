@@ -1,4 +1,4 @@
-# DeggioChat — CLI Minecraft-Style Multilingual Chat Application
+# DeggioChat — CLI Multilingual Chat Application
 
 A minimal, low-overhead client-server chat application operating entirely inside the terminal. It features a command syntax inspired by Minecraft multiplayer servers and a text user experience optimized for console navigation. 
 
