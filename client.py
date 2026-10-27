@@ -9,7 +9,6 @@ LANG_FILE = ".lang_config"
 HOST = "127.0.0.1"
 PORT = 55555
 
-# Comprehensive i18n Dictionary supporting 7 languages (Default: English)
 LANGUAGES = {
     "en": {
         "welcome_title": "   🎮   WELCOME TO DEGGIOCHAT (CLI STYLE)    🎮      ",
@@ -33,7 +32,7 @@ LANGUAGES = {
     },
     "it": {
         "welcome_title": "   🎮   BENVENUTO SU DEGGIOCHAT (CLI STYLE)  🎮      ",
-        "welcome_subtitle": "Usa /register o /login per iniziare. I comandi iniziano con '/'",
+        "welcome_subtitle": "Usa /register or /login per iniziare. I comandi iniziano con '/'",
         "welcome_examples": "Esempi: /chatrequest Alpha, /chat Alpha, /lang en, /exit, /quit\n",
         "err_conn": "❌ Impossibile connettersi al server",
         "err_server_lost": "\n❌ Connessione con il server interrotta.",
@@ -52,7 +51,7 @@ LANGUAGES = {
         "lang_changed": "🌐 Lingua cambiata in Italiano!"
     },
     "es": {
-        "welcome_title": "   🎮   BIENVENIDO A DEGGIOCHAT (ESTILO CLI) 🎮      ",
+        "welcome_title": "   🎮   BIENVENIDO A DEGGIOCHAT (ESTILOS CLI) 🎮      ",
         "welcome_subtitle": "Usa /register o /login para comenzar. Los comandos empiezan con '/'",
         "welcome_examples": "Ejemplos: /chatrequest Alpha, /chat Alpha, /lang en, /exit, /quit\n",
         "err_conn": "❌ No se pudo conectar al servidor",
@@ -176,7 +175,7 @@ class ChatClient:
             f.write(lang)
 
     def t(self, key):
-"""Localization translator helper."""
+        """Localization translator helper."""
 return LANGUAGES[self.lang].get(key, key)
 def connect(self):
 try:
@@ -194,7 +193,6 @@ if token:
 payload = {"command": "token_login", "args": [token], "lang": self.lang}
 self.send_payload(payload)
 def send_payload(self, payload):
-# Attach dynamic language property to every server packet
 payload["lang"] = self.lang
 try:
 self.socket.sendall((json.dumps(payload) + "\n").encode('utf-8'))
@@ -202,7 +200,6 @@ except Exception:
 print(self.t('err_server_lost'))
 self.running = False
 def print_motd(self, online_count):
-"""Renders the graphical multi-language ASCII Minecraft-Style MOTD."""
 print("\n" + "="*52)
 print(r"  _____                      _        _____ _           _   ")
 print(r" |  __ \                    ()      / | |         | |  ")
@@ -294,7 +291,7 @@ payload = {"command": "msg", "args": [self.focus_chat, user_input]}
 self.send_payload(payload)
 continue
 parts = user_input.split(" ")
-cmd = parts.lower()
+cmd = parts[0].lower()
 if cmd == "/quit":
 self.running = False
 break
@@ -307,10 +304,10 @@ print(self.t('not_in_chat'))
 self.print_prompt()
 continue
 elif cmd == "/lang":
-if len(parts) < 2 or parts.lower() not in LANGUAGES:
+if len(parts) < 2 or parts[1].lower() not in LANGUAGES:
 print(self.t('usage_lang'))
 else:
-self.save_lang_preference(parts.lower())
+self.save_lang_preference(parts[1].lower())
 print(self.t('lang_changed'))
 self.print_prompt()
 continue
@@ -319,26 +316,26 @@ if len(parts) < 4:
 print(self.t('usage_register'))
 self.print_prompt()
 else:
-self.send_payload({"command": "register", "args": [parts, parts, parts]})
+self.send_payload({"command": "register", "args": [parts[1], parts[2], parts[3]]})
 elif cmd == "/login":
 if len(parts) < 3:
 print(self.t('usage_login'))
 self.print_prompt()
 else:
-self.send_payload({"command": "login", "args": [parts, parts]})
+self.send_payload({"command": "login", "args": [parts[1], parts[2]]})
 elif cmd == "/chatrequest":
 if len(parts) == 2:
-self.send_payload({"command": "chatrequest", "args": [parts]})
-elif len(parts) == 3 and parts.lower() in ["accept", "deny"]:
-self.send_payload({"command": "chatrequest", "args": [parts, parts]})
+self.send_payload({"command": "chatrequest", "args": [parts[1]]})
+elif len(parts) == 3 and parts[1].lower() in ["accept", "deny"]:
+self.send_payload({"command": "chatrequest", "args": [parts[1], parts[2]]})
 else:
 print(self.t('usage_request'))
 self.print_prompt()
 elif cmd == "/chat":
 if len(parts) == 2:
-self.send_payload({"command": "chat", "args": [parts]})
-elif len(parts) == 3 and parts.lower() == "delete":
-self.send_payload({"command": "chat", "args": [parts, parts]})
+self.send_payload({"command": "chat", "args": [parts[1]]})
+elif len(parts) == 3 and parts[2].lower() == "delete":
+self.send_payload({"command": "chat", "args": [parts[1], parts[2]]})
 else:
 print(self.t('usage_chat'))
 self.print_prompt()
