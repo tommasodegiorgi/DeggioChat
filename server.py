@@ -8,7 +8,7 @@ import sqlite3
 # Server Configuration
 HOST = '0.0.0.0'
 PORT = 55555
-DB_FILE = 'deggiochat.db'
+DB_FILE = '/data/deggiochat.db'
 
 # Runtime memory structures for active connections
 online_clients = {}      # { username: socket_connection }
