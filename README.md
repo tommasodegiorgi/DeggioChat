@@ -10,7 +10,7 @@ DeggioChat natively supports cross-platform execution from source code, 7 dynami
 
 *   **Multilingual Core (i18n):** English by default. Switch dynamically at runtime between English, Italian, Spanish, Portuguese, Japanese, French, and Slovenian using the `/lang` command.
 *   **Minecraft-Style Controls:** Core authentication and messaging workflows are handled via `/register`, `/login`, `/chatrequest`, and `/chat`.
-*   **Cloud & Network Ready:** The server is fully optimized to stay online 24/7 on cloud hosting platforms (e.g., Render, Railway), allowing clients to connect globally.
+*   **Persistent Local Storage:** Driven by a native SQLite architecture, user credentials and relations are saved locally in a database file on the server machine.
 *   **Focus Chat Mode:** Typing `/chat <username>` locks the terminal prompt into a direct conversation lane. Standard user input sends text instantly without needing pre-fixed commands. Type `/exit` to return to the global CLI shell.
 
 ---
@@ -30,7 +30,7 @@ DeggioChat natively supports cross-platform execution from source code, 7 dynami
 *   `/chat list` - List all active users you currently share a dynamic chat channel with.
 *   `/chat <username>` - Enter target focus chat mode with that user.
 *   `/chat <username> delete` - Revoke shared chat permissions with that user and close the link.
-*   🌐 `/lang <en/it/es/pt/ja/fr/sl>` - Switch the entire interface and server logs instantly (Default: English).
+*   🌐 `/lang <en/it/es/pt/ja/fr/sl>` - Switch the entire interface and server responses instantly (Default: English).
 *   `/exit` - Leave a focused chat room and safely return to the global prompt environment.
 *   `/quit` - Disconnect from the remote host and close the CLI process.
 
@@ -40,41 +40,27 @@ DeggioChat natively supports cross-platform execution from source code, 7 dynami
 
 DeggioChat relies strictly on the native Python 3 Standard Library. No external heavy dependencies (`pip`) are required. Ensure you have **Python 3.8 or higher** installed on your machine.
 
-Clone or download the repository to your environment, then open your terminal inside the project directory and follow the instructions for your OS:
+Open your terminal inside the project directory and follow the instructions for your OS:
 
 ### 🪟 1. Windows
-Open **PowerShell** or **Command Prompt (CMD)** and execute the script directly:
+Open **PowerShell** or **Command Prompt (CMD)**:
 ```bash
+python server.py
+# Open a new terminal instance to run the client
 python client.py
 ```
-*(If Python is registered as `py` in your system PATH, use `py client.py` instead).*
 
-### 🍏 2. macOS
-Open **Terminal.app**. Mac operating systems might require explicit execution calls depending on environment paths:
+### 🍏 2. macOS & 🐧 3. Linux
+Open your system terminal shell:
 ```bash
-python3 client.py
-```
-
-### 🐧 3. Linux (Ubuntu, Debian, Fedora, Arch, etc.)
-Open your system terminal shell. Run:
-```bash
+python3 server.py
+# Open a new terminal instance to run the client
 python3 client.py
 ```
 
 ### 📱 4. iPad / iOS
-Since iOS cannot native-compile bin executables or run terminal processes out of the box, you can run the source code natively using free App Store environments:
-1.  Download **a-Shell** or **iSH Shell** from the iOS App Store.
-2.  Open the application interface.
-3.  Clone this repository or use the internal file provider to drop the `client.py` script.
-4.  Run the client application inside the sandbox:
-    ```bash
-    python3 client.py
-    ```
-
----
-
-## 🌐 Server Deployment Notes
-
-If you are hosting the backend instance (`server.py`) yourself:
-1.  Run `python server.py` to initiate the listener. A local file named `deggiochat.db` will automatically spawn to manage storage persistent engines.
-2.  If deploying to cloud ecosystems (e.g., Render, Railway), the environment variables will auto-map `HOST = '0.0.0.0'` and intercept the assigned routing `PORT`. Make sure to update the `HOST` address string inside `client.py` to match your cloud public domain url before distribution.
+Download **a-Shell** or **iSH Shell** from the App Store. Open the interface, pull the source files, and run the commands using internal tabs or split screen:
+```bash
+python3 server.py
+python3 client.py
+```
