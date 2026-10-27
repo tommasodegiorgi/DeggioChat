@@ -4,11 +4,13 @@ import json
 import secrets
 import hashlib
 import sqlite3
+import os  # Assicurati che os sia importato
 
-# Server Configuration
-HOST = '0.0.0.0'
-PORT = 55555
-DB_FILE = '/data/deggiochat.db'
+# Configurazione Server per Render Free
+HOST = '0.0.0.0'  # Accetta connessioni da tutto il mondo
+PORT = int(os.environ.get("PORT", 55555))  # Prende la porta assegnata da Render
+DB_FILE = 'deggiochat.db'  # Salva localmente nella cartella del server
+
 
 # Runtime memory structures for active connections
 online_clients = {}      # { username: socket_connection }
