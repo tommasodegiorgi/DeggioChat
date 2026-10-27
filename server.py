@@ -6,15 +6,15 @@ import hashlib
 import sqlite3
 
 # Server Configuration
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 PORT = 55555
 DB_FILE = 'deggiochat.db'
 
-# Global memory runtime structures
+# Runtime memory structures for active connections
 online_clients = {}      # { username: socket_connection }
 lock = threading.Lock()
 
-# Multi-language dictionary for server-side responses
+# Multi-language dictionary for server-side responses (11 Languages)
 LOCALIZATION = {
     "en": {
         "unknown_cmd": "Unknown command.",
@@ -101,7 +101,7 @@ LOCALIZATION = {
         "req_sent": "Solicitud de chat enviada a {}.",
         "incoming_req": "📩 Has recibido una solicitud de chat de {}. Escribe '/chatrequest accept {}' para aceptar.",
         "already_pending": "Ya tienes una solicitud pendiente enviada a {}.",
-        "req_accepted": "Solicitud de chat aceptada. Ahora puedes chatear con {}.",
+        "req_accepted": "Solicitud de chat activa con {}.",
         "req_accepted_notify": "✅ ¡{} aceptó tu solicitud de chat! Escribe '/chat {}' para empezar a hablar.",
         "no_req_found": "No tienes solicitudes pendientes de {}.",
         "req_denied": "Solicitud de chat de {} rechazada.",
@@ -132,7 +132,7 @@ LOCALIZATION = {
         "self_request": "Você não pode enviar uma solicitação de chat para si mesmo.",
         "user_not_found": "O usuário '{}' não existe.",
         "already_friends": "Você já tem um chat ativo com {}.",
-        "req_sent": "Solicitação de chat enviada para {}.",
+        "req_sent": "Solicitação di chat enviada para {}.",
         "incoming_req": "📩 Você recebeu uma solicitação de chat de {}. Digite '/chatrequest accept {}' para aceitar.",
         "already_pending": "Você já tem uma solicitação pendente enviada para {}.",
         "req_accepted": "Solicitação de chat aceita. Agora você pode conversar com {}.",
@@ -147,7 +147,7 @@ LOCALIZATION = {
         "enter_chat": "Entrou no chat focado com {}. Digite suas mensagens diretamente. Digite /exit para sair.",
         "not_allowed_chat": "Você não tem permissão para conversar com {}. Envie uma solicitação primeiro.",
         "chat_removed": "Relação de chat com {} removida com sucesso.",
-        "chat_removed_notify": "🗑️ {} removeu a sala de chat compartilhada com você.",
+"chat_removed_notify": "🗑️ {} removeu a sala de chat compartilhada com você.",
 "usage_chat": "Uso: /chat , /chat list, OU /chat  delete",
 "user_offline": "{} está atualmente offline.",
 "no_permission_msg": "Você não tem permissão para enviar mensagens a este usuário."
@@ -214,7 +214,7 @@ LOCALIZATION = {
 "no_active_chats": "Aucun. Envoyez des demandes via /chatrequest",
 "enter_chat": "Entré dans le chat ciblé avec {}. Tapez vos messages directement. Tapez /exit pour quitter.",
 "not_allowed_chat": "Vous n'êtes pas autorisé à chatter avec {}. Envoyez d'abord une demande.",
-"chat_removed": "Relation de chat con {} supprimée avec succès.",
+"chat_removed": "Relation de chat avec {} supprimée avec succès.",
 "chat_removed_notify": "🗑️ {} a supprimé le salon de chat partagé avec vous.",
 "usage_chat": "Usage: /chat , /chat list, OU /chat  delete",
 "user_offline": "{} est actuellement hors ligne.",
@@ -253,10 +253,145 @@ LOCALIZATION = {
 "usage_chat": "Uporaba: /chat <uporabniško_ime>, /chat list, ALI /chat <uporabniško_ime> delete",
 "user_offline": "Uporabnik {} je trenutno nedosegljiv.",
 "no_permission_msg": "Nimate dovoljenja za pošiljanje sporočil temu uporabniku."
+},
+"de": {
+"unknown_cmd": "Unbekannter Befehl.",
+"welcome_back": "Willkommen zurück bei DeggioChat, {}! Automatische Anmeldung erfolgreich.",
+"expired_token": "Ungültiges oder abgelaufenes Sitzungstoken.",
+"usage_register": "Verwendung: /register   ",
+"username_taken": "Dieser Benutzername ist bereits registriert.",
+"reg_complete": "Registrierung abgeschlossen. Willkommen bei DeggioChat, {}!",
+"usage_login": "Verwendung: /login  ",
+"login_success": "Anmeldung erfolgreich. Willkommen bei DeggioChat, {}!",
+"invalid_creds": "Ungültige Anmeldedaten.",
+"auth_required": "Sie müssen sich zuerst mit /login oder /register authentifizieren.",
+"self_request": "Sie können keine Chat-Anfrage an sich selbst senden.",
+"user_not_found": "Benutzer '{}' existiert nicht.",
+"already_friends": "Sie haben bereits einen aktiven Chat mit {}.",
+"req_sent": "Chat-Anfrage an {} gesendet.",
+"incoming_req": "📩 Sie haben eine Chat-Anfrage von {} erhalten. Geben Sie '/chatrequest accept {}' ein, um anzunehmen.",
+"already_pending": "Sie haben bereits eine ausstehende Anfrage an {} gesendet.",
+"req_accepted": "Chat-Anfrage angenommen. Sie können jetzt mit {} chatten.",
+"req_accepted_notify": "✅ {} hat Ihre Chat-Anfrage angenommen! Geben Sie '/chat {}' ein, um das Gespräch zu beginnen.",
+"no_req_found": "Sie haben keine ausstehenden Anfragen von {}.",
+"req_denied": "Chat-Anfrage von {} abgelehnt.",
+"req_denied_notify": "❌ {} hat Ihre Chat-Anfrage abgelehnt.",
+"syntax_request": "Syntaxfehler. Verwenden Sie /chatrequest <accept/deny> ",
+"usage_request": "Verwendung: /chatrequest  ODER /chatrequest <accept/deny> ",
+"active_chats": "Ihre aktiven Chats: {}",
+"no_active_chats": "Keine. Senden Sie Anfragen mit /chatrequest",
+"enter_chat": "Fokus-Chat mit {} betreten. Geben Sie Ihre Nachrichten direkt ein. Geben Sie /exit zum Verlassen ein.",
+"not_allowed_chat": "Sie dürfen nicht mit {} chatten. Senden Sie zuerst eine Anfrage.",
+"chat_removed": "Chat-Beziehung mit {} erfolgreich entfernt.",
+"chat_removed_notify": "🗑️ {} hat den gemeinsamen Chatraum mit Ihnen entfernt.",
+"usage_chat": "Verwendung: /chat , /chat list, ODER /chat  delete",
+"user_offline": "{} ist derzeit offline.",
+"no_permission_msg": "Sie haben keine Berechtigung, diesem Benutzer eine Nachricht zu senden."
+},
+"hr": {
+"unknown_cmd": "Nepoznata naredba.",
+"welcome_back": "Dobrodošli natrag na DeggioChat, {}! Automatska prijava uspješna.",
+"expired_token": "Nevažeći ili istekli token seje.",
+"usage_register": "Upotreba: /register  <korisničko_ime> ",
+"username_taken": "Ovo korisničko ime je već registrirano.",
+"reg_complete": "Registracija završena. Dobrodošli na DeggioChat, {}!",
+"usage_login": "Upotreba: /login <korisničko_ime> ",
+"login_success": "Prijava uspješna. Dobrodošli na DeggioChat, {}!",
+"invalid_creds": "Nevažeći vjerodostojni podaci.",
+"auth_required": "Morate se prvo autentificirati koristeći /login ili /register.",
+"self_request": "Ne možete poslati zahtjev za chat sami sebi.",
+"user_not_found": "Korisnik '{}' ne postoji.",
+"already_friends": "Već imate aktivan chat s {}.",
+"req_sent": "Zahtjev za chat poslan korisniku {}.",
+"incoming_req": "📩 Primili ste zahtjev za chat od {}. Upišite '/chatrequest accept {}' za prihvaćanje.",
+"already_pending": "Već imate zahtjev na čekanju poslan korisniku {}.",
+"req_accepted": "Zahtjev za chat prihvaćen. Sada možete chatati s {}.",
+"req_accepted_notify": "✅ {} je prihvatio vaš zahtjev za chat! Upišite '/chat {}' za početak razgovora.",
+"no_req_found": "Nemate zahtjeva na čekanju od korisnika {}.",
+"req_denied": "Zahtjev za chat od korisnika {} odbijen.",
+"req_denied_notify": "❌ {} je odbio vaš zahtjev za chat.",
+"syntax_request": "Sintaktička pogreška. Koristite /chatrequest <accept/deny> <korisničko_ime>",
+"usage_request": "Upotreba: /chatrequest <korisničko_ime> ILI /chatrequest <accept/deny> <korisničko_ime>",
+"active_chats": "Vaši aktivni chatovi: {}",
+"no_active_chats": "Nema ih. Pošaljite zahtjev koristeći /chatrequest",
+"enter_chat": "Ušli ste u fokusirani chat s korisnikom {}. Poruke upisujte izravno. Upišite /exit za izlaz.",
+"not_allowed_chat": "Nemate dopuštenje za chat s korisnikom {}. Prvo pošaljite zahtjev.",
+"chat_removed": "Veza za chat s korisnikom {} uspješno uklonjena.",
+"chat_removed_notify": "🗑️ {} je uklonio zajedničku chat sobu s vama.",
+"usage_chat": "Upotreba: /chat <korisničko_ime>, /chat list, ILI /chat <korisničko_ime> delete",
+"user_offline": "Korisnik {} je trenutno izvan mreže.",
+"no_permission_msg": "Nemate dopuštenje za slanje poruka ovom korisniku."
+},
+"sv": {
+"unknown_cmd": "Okänt kommando.",
+"welcome_back": "Välkommen tillbaka till DeggioChat, {}! Automatisk inloggning lyckades.",
+"expired_token": "Ogiltig eller utgången sessionstoken.",
+"usage_register": "Användning: /register  <användarnamn> <lösenord>",
+"username_taken": "Detta användarnamn är redan registrerat.",
+"reg_complete": "Registreringen klar. Välkommen till DeggioChat, {}!",
+"usage_login": "Användning: /login <användarnamn> <lösenord>",
+"login_success": "Inloggning lyckades. Välkommen till DeggioChat, {}!",
+"invalid_creds": "Felaktiga inloggningsuppgifter.",
+"auth_required": "Du måste autentisera dig först med /login eller /register.",
+"self_request": "Du kan inte skicka en chatta-förfrågan till dig själv.",
+"user_not_found": "Användaren '{}' finns inte.",
+"already_friends": "Du har redan en aktiv chatt med {}.",
+"req_sent": "Chatta-förfrågan skickad till {}.",
+"incoming_req": "📩 Du har fått en chatta-förfrågan från {}. Skriv '/chatrequest accept {}' för att godkänna.",
+"already_pending": "Du har redan en väntande förfrågan skickad till {}.",
+"req_accepted": "Chatta-förfrågan godkänd. Du kan nu chatta med {}.",
+"req_accepted_notify": "✅ {} godkände din chatta-förfrågan! Skriv '/chat {}' för att börja prata.",
+"no_req_found": "Du har inga väntande förfrågningar från {}.",
+"req_denied": "Chatta-förfrågan från {} avvisad.",
+"req_denied_notify": "❌ {} avvisade din chatta-förfrågan.",
+"syntax_request": "Syntaxfel. Använd /chatrequest <accept/deny> <användarnamn>",
+"usage_request": "Användning: /chatrequest <användarnamn> ELLER /chatrequest <accept/deny> <användarnamn>",
+"active_chats": "Dina aktiva chattar: {}",
+"no_active_chats": "Inga. Skicka förfrågningar med /chatrequest",
+"enter_chat": "Gick in i fokus-chatt med {}. Skriv dina meddelanden direkt. Skriv /exit för att lämna.",
+"not_allowed_chat": "Du har inte tillåtelse at chatta med {}. Skicka en förfrågan först.",
+"chat_removed": "Chattrelationen med {} har tagits bort.",
+"chat_removed_notify": "🗑️ {} tog bort det gemensamma chattrummet med dig.",
+"usage_chat": "Användning: /chat <användarnamn>, /chat list, ELLER /chat <användarnamn> delete",
+"user_offline": "{} är för närvarande offline.",
+"no_permission_msg": "Du har inte behörighet att skicka meddelanden till denna användare."
+},
+"zh": {
+"unknown_cmd": "未知命令。",
+"welcome_back": "欢迎回到 DeggioChat，{}！自动登录成功。",
+"expired_token": "无效或过期的会话令牌。",
+"usage_register": "用法: /register <电子邮件> <用户名> <密码>",
+"username_taken": "该用户名已被注册。",
+"reg_complete": "注册完成。欢迎来到 DeggioChat，{}！",
+"usage_login": "用法: /login <用户名> <密码>",
+"login_success": "登录成功。欢迎来到 DeggioChat，{}！",
+"invalid_creds": "凭据无效。",
+"auth_required": "您必须先使用 /login 或 /register 进行身份验证。",
+"self_request": "您 cannot 向自己发送聊天请求。",
+"user_not_found": "用户 '{}' 不存在。",
+"already_friends": "您已与 {} 建立了活跃聊天。",
+"req_sent": "聊天请求已发送至 {}。",
+"incoming_req": "📩 您收到了来自 {} 的聊天请求。输入 '/chatrequest accept {}' 以接受。",
+"already_pending": "您已向 {} 发送了正在等待处理的请求。",
+"req_accepted": "聊天请求已接受。您现在可以与 {} 聊天了。",
+"req_accepted_notify": "✅ {} 接受了您的聊天请求！输入 '/chat {}' 开始交谈。",
+"no_req_found": "您没有来自 {} 的待处理请求。",
+"req_denied": "来自 {} 的聊天请求已被拒绝。",
+"req_denied_notify": "❌ {} 拒绝了您的聊天请求。",
+"syntax_request": "语法错误。使用 /chatrequest <accept/deny> <用户名>",
+"usage_request": "用法: /chatrequest <用户名> 或 /chatrequest <accept/deny> <用户名>",
+"active_chats": "您的活跃聊天: {}",
+"no_active_chats": "无。使用 /chatrequest 发送请求",
+"enter_chat": "已进入与 {} 的专注聊天。直接输入您的消息。输入 /exit 退出。",
+"not_allowed_chat": "您未被允许与 {} 聊天。请先发送请求。",
+"chat_removed": "与 {} 的聊天关系已成功删除。",
+"chat_removed_notify": "🗑️ {} 删掉了与您的共享聊天室。",
+"usage_chat": "用法: /chat <用户名>, /chat list, 或 /chat <用户名> delete",
+"user_offline": "{} 当前处于离线状态。",
+"no_permission_msg": "您没有给该用户发送消息的权限。"
 }
 }
 def get_msg(lang, key, *args):
-"""Safely retrieves a localized string based on the active client language."""
 if lang not in LOCALIZATION:
 lang = "en"
 template = LOCALIZATION[lang].get(key, LOCALIZATION["en"].get(key, key))
@@ -306,7 +441,7 @@ except json.JSONDecodeError:
 continue
 command = payload.get("command")
 args = payload.get("args", [])
-lang = payload.get("lang", "en").lower()  # Receives language context from client (Default: en)
+lang = payload.get("lang", "en").lower()
 # 1. TOKEN LOGIN
 if command == "token_login":
 token = args if len(args) > 0 else ""
